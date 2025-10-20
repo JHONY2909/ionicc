@@ -1,0 +1,7 @@
+{
+  "name": "crud-jh",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
