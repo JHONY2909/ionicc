@@ -1,0 +1,95 @@
+<ion-content class="login-page">
+  <div class="login-container">
+    <!-- Left side - Branding -->
+    <div class="left-panel">
+      <div class="brand-section">
+        <div class="logo">
+          <ion-icon name="school-outline"></ion-icon>
+        </div>
+        <h1 class="brand-title">CRUD App</h1>
+        <p class="brand-subtitle">Sistema de Gestión de Estudiantes</p>
+        <div class="features">
+          <div class="feature-item">
+            <ion-icon name="checkmark-circle"></ion-icon>
+            <span>Gestión completa de estudiantes</span>
+          </div>
+          <div class="feature-item">
+            <ion-icon name="checkmark-circle"></ion-icon>
+            <span>Interfaz intuitiva y moderna</span>
+          </div>
+          <div class="feature-item">
+            <ion-icon name="checkmark-circle"></ion-icon>
+            <span>Acceso seguro y confiable</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right side - Login Form -->
+    <div class="right-panel">
+      <div class="login-form-container">
+        <div class="form-header">
+          <h2>Bienvenido de vuelta</h2>
+          <p>Inicia sesión en tu cuenta</p>
+        </div>
+
+        <form class="login-form">
+          <div class="input-group">
+            <label class="input-label">Correo electrónico</label>
+            <div class="input-wrapper">
+              <ion-icon name="mail-outline" class="input-icon"></ion-icon>
+              <ion-input
+                [(ngModel)]="email"
+                type="email"
+                placeholder="tu@email.com"
+                class="custom-input">
+              </ion-input>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label">Contraseña</label>
+            <div class="input-wrapper">
+              <ion-icon name="lock-closed-outline" class="input-icon"></ion-icon>
+              <ion-input
+                [(ngModel)]="password"
+                type="password"
+                placeholder="••••••••"
+                class="custom-input">
+              </ion-input>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <ion-button
+              expand="block"
+              (click)="login()"
+              class="primary-button">
+              <ion-icon name="log-in-outline" slot="start"></ion-icon>
+              Iniciar Sesión
+            </ion-button>
+
+            <div class="divider">
+              <span>o</span>
+            </div>
+
+            <ion-button
+              expand="block"
+              fill="outline"
+              (click)="loginGoogle()"
+              class="google-button">
+              <ion-icon name="logo-google" slot="start"></ion-icon>
+              Continuar con Google
+            </ion-button>
+          </div>
+
+          <div class="register-prompt">
+            <p>¿No tienes una cuenta?
+              <a routerLink="/register" class="register-link">Regístrate aquí</a>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</ion-content>

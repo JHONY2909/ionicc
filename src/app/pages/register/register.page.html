@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button routerLink="/login">
+        <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Crear Cuenta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="register-container">
+    <!-- Logo/Icon Section -->
+    <div class="logo-section">
+      <div class="app-logo">
+        <ion-icon name="school"></ion-icon>
+      </div>
+      <h1>CRUD App</h1>
+      <p>Únete a nuestra plataforma</p>
+    </div>
+
+    <!-- Form Section -->
+    <div class="form-section">
+      <ion-item lines="none">
+        <ion-icon name="mail" slot="start"></ion-icon>
+        <ion-input
+          [(ngModel)]="email"
+          type="email"
+          placeholder="Correo electrónico"
+          clearInput="true">
+        </ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-icon name="lock-closed" slot="start"></ion-icon>
+        <ion-input
+          [(ngModel)]="password"
+          type="password"
+          placeholder="Contraseña"
+          clearInput="true">
+        </ion-input>
+      </ion-item>
+
+      <ion-button
+        expand="block"
+        (click)="register()"
+        class="register-button">
+        <ion-icon name="rocket" slot="start"></ion-icon>
+        Crear mi cuenta
+      </ion-button>
+
+      <!-- Login Link -->
+      <div class="login-link">
+        <ion-text>
+          ¿Ya tienes cuenta?
+          <a routerLink="/login" class="login-link-text">Inicia sesión aquí</a>
+        </ion-text>
+      </div>
+    </div>
+  </div>
+</ion-content>
