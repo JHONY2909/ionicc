@@ -1,256 +1,64 @@
+/* ===============================
+   REGISTER PAGE STYLES
+================================ */
+
 ion-content {
-  --background: var(--gradient-primary);
-  position: relative;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
-    opacity: 0.5;
-  }
+  --background: var(--color-background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .register-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 100%;
+  width: 100%;
+  max-width: 420px;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
   padding: var(--spacing-xl);
-  max-width: 440px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-  animation: fadeIn 0.8s ease-out;
+  animation: fadeIn 0.6s ease-out;
 }
 
 .logo-section {
   text-align: center;
-  margin-bottom: var(--spacing-xl);
-  animation: slideInUp 0.8s ease-out;
+  margin-bottom: var(--spacing-lg);
 
-  .app-logo {
-    margin-bottom: var(--spacing-lg);
-    position: relative;
-    display: inline-block;
-
-    ion-icon {
-      font-size: 5rem;
-      color: rgba(255, 255, 255, 0.95);
-      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
-      animation: pulse 3s ease-in-out infinite;
-    }
-    
-    &::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 120px;
-      height: 120px;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
-      border-radius: 50%;
-      z-index: -1;
-    }
+  ion-icon {
+    font-size: 3rem;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
   }
 
   h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    margin: 0 0 var(--spacing-sm) 0;
-    color: #ffffff;
-    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    letter-spacing: -1px;
-    background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.8) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-weight: 700;
+    color: var(--color-primary-dark);
+    margin-bottom: var(--spacing-xs);
   }
 
   p {
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.9);
-    margin: 0;
-    font-weight: 400;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    color: var(--color-text-secondary);
   }
 }
 
-.form-section {
-  animation: slideInUp 0.8s ease-out 0.2s both;
-  
-  ion-item {
-    --background: rgba(255, 255, 255, 0.15);
-    --border-radius: var(--radius-lg);
-    --padding-start: var(--spacing-md);
-    --color: #ffffff;
-    --placeholder-color: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    margin-bottom: var(--spacing-md);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    transition: all var(--transition-base);
-    
-    &:hover {
-      --background: rgba(255, 255, 255, 0.2);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-    }
-    
-    &.item-has-focus {
-      --background: rgba(255, 255, 255, 0.25);
-      border-color: rgba(255, 255, 255, 0.4);
-      box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
-    }
-    
-    ion-icon {
-      color: rgba(255, 255, 255, 0.9);
-      font-size: 1.5rem;
-      margin-right: var(--spacing-sm);
-    }
-    
-    ion-input {
-      --color: #ffffff;
-      --placeholder-color: rgba(255, 255, 255, 0.7);
-      font-size: 1rem;
-      font-weight: 500;
-    }
-  }
+ion-item {
+  margin-bottom: var(--spacing-md);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
 
-  .register-button {
-    --background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    --color: #ffffff;
-    --border-radius: var(--radius-lg);
-    --box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4);
-    margin: var(--spacing-xl) 0 var(--spacing-md) 0;
-    height: 56px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    text-transform: none;
-    transition: all var(--transition-base);
-
-    &:hover {
-      --box-shadow: 0 15px 40px rgba(245, 87, 108, 0.5);
-      transform: translateY(-3px);
-    }
-    
-    &:active {
-      transform: translateY(-1px);
-    }
-
-    ion-icon {
-      margin-right: var(--spacing-sm);
-      font-size: 1.3rem;
-    }
-  }
+.register-button {
+  --background: var(--gradient-primary);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
 }
 
 .login-link {
   text-align: center;
-  margin-top: var(--spacing-xl);
-  padding: var(--spacing-md);
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-md);
-  backdrop-filter: blur(10px);
-  animation: slideInUp 0.8s ease-out 0.4s both;
-
-  ion-text {
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.9);
-    font-weight: 500;
-  }
+  margin-top: var(--spacing-md);
 
   .login-link-text {
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: 700;
-    margin-left: var(--spacing-xs);
-    transition: all var(--transition-base);
-    display: inline-block;
-    position: relative;
-    
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: #ffffff;
-      transition: width var(--transition-base);
-    }
-
-    &:hover {
-      transform: translateX(4px);
-      
-      &::after {
-        width: 100%;
-      }
-    }
-  }
-}
-
-/* Decorative Elements */
-.register-container::before {
-  content: '';
-  position: absolute;
-  top: -100px;
-  right: -100px;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.register-container::after {
-  content: '';
-  position: absolute;
-  bottom: -150px;
-  left: -150px;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-/* Responsive Design */
-@media (max-width: 480px) {
-  .register-container {
-    padding: var(--spacing-lg);
-  }
-
-  .logo-section {
-    margin-bottom: var(--spacing-lg);
-
-    .app-logo ion-icon {
-      font-size: 4rem;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-    }
-    
-    p {
-      font-size: 1rem;
-    }
-  }
-  
-  .form-section .register-button {
-    height: 52px;
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 360px) {
-  .logo-section h1 {
-    font-size: 2rem;
+    color: var(--color-primary);
+    font-weight: 600;
   }
 }

@@ -1,55 +1,122 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>📚 Gestión de Estudiantes</ion-title>
+    <ion-title>Registro de Estudiantes</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="openAddModal()">
-        <ion-icon name="add-circle" slot="icon-only"></ion-icon>
+      <ion-button fill="clear" color="light" (click)="openAddModal()">
+        <ion-icon name="add-outline" slot="start"></ion-icon>
+        <strong>+ CREAR REGISTRO</strong>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-
-  <!-- 🔍 Campo de búsqueda -->
-  <ion-searchbar
-    placeholder="🔎 Buscar por nombre, correo o curso..."
-    [(ngModel)]="searchTerm"
-    (ionInput)="filtrarEstudiantes()"
-    animated
-    showClearButton="always"
-  ></ion-searchbar>
-
-  <!-- 📋 Lista de estudiantes -->
-  <ion-list *ngIf="estudiantesFiltrados.length > 0; else noData">
-    <ion-item *ngFor="let e of estudiantesFiltrados" lines="none" class="student-item">
-      <ion-label>
-        <h2>{{ e.nombre }}</h2>
-        <p>{{ e.correo }}</p>
-        <p>{{ e.curso }}</p>
-        <p>
-          <ion-icon name="call"></ion-icon>
-          {{ e.telefono }}
-        </p>
-      </ion-label>
-
-      <ion-buttons slot="end">
-        <ion-button color="warning" (click)="openEditModal(e)">
-          <ion-icon name="create" slot="icon-only"></ion-icon>
-        </ion-button>
-        <ion-button color="danger" (click)="deleteStudent(e.id!)">
-          <ion-icon name="trash" slot="icon-only"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-item>
-  </ion-list>
-
-  <!-- 🟡 Sin resultados -->
-  <ng-template #noData>
-    <div class="no-data">
-      <ion-icon name="school-outline"></ion-icon>
-      <p>No hay estudiantes registrados<br>o que coincidan con tu búsqueda.</p>
+<ion-content class="home-content">
+  
+  <!-- LISTA DE ESTUDIANTES -->
+  <div class="students-container">
+    <div *ngFor="let e of estudiantesFiltrados" class="student-card">
+      
+      <!-- AVATAR -->
+      <div class="avatar">{{ getInitials(e.nombre) }}</div>
+      
+      <!-- INFO -->
+      <div class="student-info">
+        <h3 class="student-name">{{ e.nombre }}</h3>
+        <div class="detail">
+          <span class="icon">📧</span>
+          <span>{{ e.correo }}</span>
+        </div>
+        <div class="detail">
+          <span class="icon">📚</span>
+          <span>{{ e.curso }}</span>
+        </div>
+        <div class="detail">
+          <span class="icon">📞</span>
+          <span>{{ e.telefono }}</span>
+        </div>
+      </div>
+      
+      <!-- BOTONES -->
+      <div class="actions">
+        <button class="btn-edit" (click)="openEditModal(e)">
+          <span>✏️</span>
+        </button>
+        <button class="btn-delete" (click)="deleteStudent(e.id!)">
+          <span>🗑️</span>
+        </button>
+      </div>
+      
     </div>
-  </ng-template>
+  </div>
+
+  <!-- SIN DATOS -->
+  <div *ngIf="estudiantesFiltrados.length === 0" class="empty-state">
+    <span class="empty-icon">🏫</span>
+    <p>No hay estudiantes registrados</p>
+  </div>
+ <!-- ================================
+   MODAL PERSONALIZADO - FIX INPUTS
+================================ -->
+<div class="custom-modal" *ngIf="showModal">
+  <div class="modal-overlay" (click)="closeModal()"></div>
+  
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>
+        <span class="icon">{{ showEdit ? '✏️' : '👤' }}</span>
+        {{ showEdit ? 'Editar Estudiante' : 'Nuevo Estudiante' }}
+      </h2>
+    </div>
+
+    <div class="modal-body">
+      <!-- NOMBRE -->
+      <div class="input-group">
+        <span class="icon">👤</span>
+        <input 
+          type="text" 
+          placeholder="Nombre completo"
+          [(ngModel)]="modalData.nombre"
+          #nombreInput>
+      </div>
+
+      <!-- CORREO -->
+      <div class="input-group">
+        <span class="icon">📧</span>
+        <input 
+          type="email" 
+          placeholder="Correo electrónico"
+          [(ngModel)]="modalData.correo"
+          #correoInput>
+      </div>
+
+      <!-- CURSO -->
+      <div class="input-group">
+        <span class="icon">📚</span>
+        <input 
+          type="text" 
+          placeholder="Curso"
+          [(ngModel)]="modalData.curso"
+          #cursoInput>
+      </div>
+
+      <!-- TELÉFONO -->
+      <div class="input-group">
+        <span class="icon">📞</span>
+        <input 
+          type="tel" 
+          placeholder="Teléfono"
+          [(ngModel)]="modalData.telefono"
+          #telefonoInput>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-save" (click)="saveStudent()">
+        {{ showEdit ? 'Actualizar' : 'Guardar' }}
+      </button>
+      <button class="btn-cancel" (click)="closeModal()">Cancelar</button>
+    </div>
+  </div>
+</div>
 
 </ion-content>
