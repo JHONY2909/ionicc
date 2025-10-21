@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
+import { IonApp, IonRouterOutlet, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  imports: [IonApp, IonRouterOutlet],
+  imports: [IonApp, IonRouterOutlet, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonIcon, CommonModule],
 })
 export class AppComponent implements OnInit {
+  isAuthenticated: boolean = false;
+
   constructor(
     private authService: AuthService,
     private router: Router
@@ -21,6 +24,8 @@ export class AppComponent implements OnInit {
     // Escuchar cambios en el estado de autenticación
     this.authService.getAuth().onAuthStateChanged((user) => {
       console.log('🔐 Estado de autenticación cambió:', user ? 'Usuario logueado' : 'Usuario no logueado');
+
+      this.isAuthenticated = !!user; // Actualizar estado de autenticación
 
       if (user) {
         console.log('👤 Usuario autenticado:', user.email);
@@ -39,5 +44,14 @@ export class AppComponent implements OnInit {
         }
       }
     });
+  }
+
+  async logout() {
+    try {
+      await this.authService.logout();
+      console.log('✅ Logout exitoso');
+    } catch (error) {
+      console.error('❌ Error al hacer logout:', error);
+    }
   }
 }

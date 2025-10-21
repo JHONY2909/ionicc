@@ -33,13 +33,14 @@
           <p>Inicia sesión en tu cuenta</p>
         </div>
 
-        <form class="login-form">
+        <form class="login-form" #loginForm="ngForm">
           <div class="input-group">
             <label class="input-label">Correo electrónico</label>
             <div class="input-wrapper">
               <ion-icon name="mail-outline" class="input-icon"></ion-icon>
               <ion-input
                 [(ngModel)]="email"
+                name="email"
                 type="email"
                 placeholder="tu@email.com"
                 class="custom-input">
@@ -53,6 +54,7 @@
               <ion-icon name="lock-closed-outline" class="input-icon"></ion-icon>
               <ion-input
                 [(ngModel)]="password"
+                name="password"
                 type="password"
                 placeholder="••••••••"
                 class="custom-input">
@@ -85,7 +87,7 @@
 
           <div class="register-prompt">
             <p>¿No tienes una cuenta?
-              <a routerLink="/register" class="register-link">Regístrate aquí</a>
+              <ion-router-link routerLink="/register" class="register-link">Regístrate aquí</ion-router-link>
             </p>
           </div>
         </form>
